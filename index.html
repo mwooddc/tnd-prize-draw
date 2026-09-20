@@ -4,198 +4,205 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#8F3F14">
-<title>Prize draw registration | tnd.dxb</title>
+<meta name="theme-color" content="#E6D8C8">
+<title>Prize draw registration | TND</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%23816447%22/%3E%3Csvg x=%227%22 y=%2222.5%22 width=%2250%22 height=%2220.2%22 viewBox=%2266 60 2363 953%22%3E%3Cpath fill=%22%23E6D8C8%22 d=%22M70 64L974 64L1677 1009L1554 1009L860 89L586 89L586 1009L465 1009L465 89L70 89ZM863 344L869 344L877 1009L855 1009ZM1556 64L1661 64L1661 903L1556 774ZM1842 1012L1740 1012 L1738 1010C1732 1006 1732 1000 1736 998L1738 996 L1826 995C1875 995 1917 994 1920 993C1924 993 1934 992 1944 991C1953 990 1962 989 1964 989C1967 988 1974 987 1980 986C1987 985 1997 982 2003 981C2009 979 2018 976 2024 974C2087 957 2162 901 2208 835C2235 796 2266 732 2274 696C2275 693 2276 687 2278 683C2281 672 2290 626 2291 614C2295 583 2296 538 2295 523C2294 517 2294 504 2293 494L2292 476 L2289 462C2287 454 2286 446 2286 445C2286 443 2284 434 2281 424C2279 415 2276 404 2275 400C2273 392 2265 368 2261 357C2259 352 2256 344 2254 340C2205 218 2096 120 1986 98C1981 98 1975 96 1971 95C1964 93 1951 91 1926 88C1917 88 1909 87 1908 86C1906 86 1812 82 1758 81L1724 80 L1721 79C1716 76 1716 71 1721 68L1724 67 L1764 66C1865 64 1976 65 2009 68C2016 69 2026 70 2030 71C2034 71 2042 72 2047 74C2052 75 2061 77 2066 78C2075 79 2087 82 2112 89C2116 90 2121 92 2124 93C2126 94 2133 97 2139 99C2185 116 2232 145 2273 180C2292 196 2297 201 2315 222C2345 257 2378 311 2390 346C2391 348 2393 355 2395 360C2401 374 2409 401 2411 414C2412 418 2413 424 2414 428C2416 433 2418 441 2418 448C2419 454 2421 462 2421 467C2422 472 2424 488 2425 503L2426 530 L2426 553C2425 587 2423 605 2421 618C2420 624 2419 632 2418 637C2417 641 2416 648 2415 651C2414 655 2412 662 2411 667C2411 672 2408 683 2406 691C2403 699 2401 707 2400 709C2398 718 2386 748 2379 761C2357 808 2320 857 2281 893C2230 938 2155 978 2091 994C2085 995 2076 997 2072 999C2067 1000 2060 1001 2056 1002C2053 1003 2044 1004 2037 1005C2012 1009 1986 1011 1954 1012C1949 1012 1899 1012 1842 1012Z%22/%3E%3C/svg%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
   :root {
-    --bronze: #8F3F14;
-    --gold: #F4B740;
-    --ink: #3B1D0E;
-    --muted: #7A5A47;
-    --line: #E6D3C2;
-    --sheet: #FFFBF5;
-    --error: #B3261E;
-    --radius: 14px;
+    /* Colours sampled from the TND artwork */
+    --sand: #E6D8C8;        /* page ground */
+    --ivory: #F8F2EA;       /* form panel */
+    --field: #FFFDF9;
+    --brown: #816447;       /* logo, footer bar, buttons */
+    --espresso: #4B3A2B;    /* body text, dark button */
+    --muted: #7B6650;
+    --line: #D9C7B3;
+    --cream: #FDF4E3;       /* text on brown */
+    --error: #A63A2B;
+
+    --serif: "Cormorant Garamond", "Cormorant", Georgia, "Times New Roman", serif;
+    --sans: "Jost", "Century Gothic", "Avenir Next", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --script: "Allura", "Snell Roundhand", "Apple Chancery", cursive;
   }
 
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
-    background: var(--bronze);
-    color: var(--ink);
-    font-family: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    font-optical-sizing: auto;
+    min-height: 100vh; min-height: 100dvh;
+    display: flex; flex-direction: column;
+    background: var(--sand);
+    color: var(--espresso);
+    font-family: var(--sans);
     font-size: 17px;
-    line-height: 1.45;
+    font-weight: 400;
+    line-height: 1.5;
   }
   [hidden] { display: none !important; }
 
   .demo-banner {
-    background: var(--gold);
-    color: var(--ink);
-    padding: 10px 16px;
-    font-size: .88rem;
-    font-weight: 700;
-    text-align: center;
+    background: var(--espresso); color: var(--cream);
+    padding: 10px 16px; font-size: .85rem; text-align: center;
   }
 
-  .page {
-    max-width: 480px;
-    margin: 0 auto;
-    min-height: 100vh;
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* ---------- Masthead (on the bronze ground) ---------- */
+  /* ---------- Masthead: logo over a palm-leaf shadow, as in the brand artwork ---------- */
   .masthead {
-    padding: calc(28px + env(safe-area-inset-top, 0px)) 22px 26px;
-    color: #fff;
+    position: relative;
+    overflow: hidden;
+    padding: calc(34px + env(safe-area-inset-top, 0px)) 22px 30px;
+    text-align: center;
+    isolation: isolate;
   }
-  .wordmark {
-    margin: 0 0 22px;
-    font-size: 1.2rem;
-    font-weight: 800;
-    color: var(--gold);
+  .masthead::before {            /* soft corner shadow, like the top-right of the artwork */
+    content: ""; position: absolute; inset: 0; z-index: -2;
+    background: radial-gradient(120% 80% at 100% 0%, rgba(129,100,71,.24), rgba(129,100,71,0) 60%);
   }
+  .palm {
+    position: absolute; z-index: -1; top: -40px; left: -80px;
+    width: 380px; height: 380px;
+    filter: blur(3px);
+    -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent 68%);
+            mask-image: linear-gradient(to bottom, #000 30%, transparent 68%);
+    pointer-events: none;
+  }
+  .masthead-inner { max-width: 480px; margin: 0 auto; }
+
+  .logo { display: block; width: min(64vw, 250px); height: auto; aspect-ratio: 2363 / 953; margin: 0 auto 16px; }
+  .tagline {
+    margin: 0;
+    font-size: .74rem; font-weight: 400;
+    letter-spacing: .3em; text-transform: uppercase;
+    color: var(--brown);
+  }
+  .rule { width: 56px; height: 1px; margin: 26px auto 22px; border: 0; background: var(--brown); }
+
   .masthead h1 {
     margin: 0;
-    font-size: clamp(2rem, 9.5vw, 2.7rem);
-    line-height: 1.02;
-    font-weight: 800;
-    letter-spacing: -.02em;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1.7rem, 8.2vw, 2.3rem);
+    line-height: 1.12;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--brown);
     outline: none;
   }
   .lede {
-    margin: 12px 0 0;
-    max-width: 32ch;
-    color: #FBE3CF;
+    margin: 14px auto 0; max-width: 30ch;
+    font-size: .95rem; font-weight: 300; letter-spacing: .04em;
+    color: var(--espresso);
   }
 
-  /* ---------- White sheet ---------- */
+  /* ---------- Panel ---------- */
+  .page { flex: 1; width: 100%; max-width: 480px; margin: 0 auto; padding: 0 16px 30px; }
   .sheet {
-    flex: 1;
-    background: var(--sheet);
-    border-radius: 28px 28px 0 0;
-    padding: 26px 22px calc(34px + env(safe-area-inset-bottom, 0px));
+    background: var(--ivory);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 26px 22px 28px;
   }
   .sheet h2 {
-    margin: 0 0 6px;
-    font-size: 1.35rem;
-    line-height: 1.15;
-    font-weight: 800;
-    letter-spacing: -.01em;
+    margin: 0 0 8px;
+    font-family: var(--serif); font-weight: 500;
+    font-size: 1.55rem; line-height: 1.15; letter-spacing: .02em;
+    color: var(--espresso);
   }
   .sheet p { margin: 0 0 16px; }
-  .sheet :focus-visible { outline: 3px solid var(--bronze); outline-offset: 3px; }
-
-  @media (min-width: 600px) {
-    .page { padding-top: 24px; }
-    .sheet { flex: 0 1 auto; border-radius: 28px; margin-bottom: 32px; }
-  }
+  .sheet :focus-visible { outline: 3px solid var(--brown); outline-offset: 3px; }
 
   /* ---------- Progress ---------- */
   .progress { display: flex; gap: 6px; margin: 0 0 8px; }
-  .progress span { flex: 1; height: 5px; border-radius: 3px; background: var(--line); }
-  .progress span.on { background: var(--bronze); }
-  .step-label { margin: 0 0 20px !important; font-size: .88rem; color: var(--muted); }
+  .progress span { flex: 1; height: 3px; border-radius: 2px; background: var(--line); }
+  .progress span.on { background: var(--brown); }
+  .step-label { margin: 0 0 22px !important; font-size: .85rem; letter-spacing: .06em; color: var(--muted); }
 
   /* ---------- Form ---------- */
   .field { margin-bottom: 18px; }
-  label, .label { display: block; margin-bottom: 6px; font-weight: 700; font-size: .95rem; }
-  .opt { font-weight: 400; color: var(--muted); }
+  label, .label { display: block; margin-bottom: 6px; font-weight: 500; font-size: .95rem; letter-spacing: .02em; }
+  .opt { font-weight: 300; color: var(--muted); }
 
   input[type="text"], input[type="email"], input[type="tel"] {
-    width: 100%;
-    height: 54px;
-    padding: 0 16px;
-    font: inherit;
-    font-size: 16px; /* 16px stops iOS zooming in on focus */
-    color: var(--ink);
-    background: #fff;
-    border: 1.5px solid var(--line);
-    border-radius: var(--radius);
-    -webkit-appearance: none;
-    appearance: none;
+    width: 100%; height: 54px; padding: 0 16px;
+    font: inherit; font-size: 16px;       /* 16px stops iOS zooming in on focus */
+    color: var(--espresso); background: var(--field);
+    border: 1px solid var(--line); border-radius: 12px;
+    -webkit-appearance: none; appearance: none;
   }
-  input::placeholder { color: #A58F80; }
+  input::placeholder { color: #A8967F; }
   input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus {
-    outline: none;
-    border-color: var(--bronze);
-    box-shadow: 0 0 0 3px rgba(143, 63, 20, .22);
+    outline: none; border-color: var(--brown); box-shadow: 0 0 0 3px rgba(129,100,71,.22);
   }
   input[aria-invalid="true"] { border-color: var(--error); }
 
   .error { margin: 6px 0 0; font-size: .9rem; color: var(--error); }
   .error:empty { display: none; }
   .form-error {
-    margin: 0 0 16px;
-    padding: 12px 14px;
-    border: 1.5px solid var(--error);
-    border-radius: var(--radius);
-    color: var(--error);
-    font-size: .95rem;
+    margin: 0 0 16px; padding: 12px 14px;
+    border: 1px solid var(--error); border-radius: 12px;
+    color: var(--error); font-size: .95rem;
   }
   .form-error:empty { display: none; }
 
-  .check { display: flex; gap: 12px; align-items: flex-start; margin: 0 0 14px; font-size: .92rem; line-height: 1.4; font-weight: 400; }
-  .check input { flex: none; width: 24px; height: 24px; margin: 0; accent-color: var(--bronze); }
+  .check { display: flex; gap: 12px; align-items: flex-start; margin: 0 0 14px; font-size: .92rem; line-height: 1.45; font-weight: 400; letter-spacing: 0; }
+  .check input { flex: none; width: 24px; height: 24px; margin: 0; accent-color: var(--brown); }
   .consents { margin-top: 6px; }
-
   .trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
   /* ---------- Buttons ---------- */
   .btn {
     display: flex; align-items: center; justify-content: center; gap: 10px;
-    width: 100%; min-height: 56px; padding: 0 20px;
-    border: 2px solid transparent; border-radius: 16px;
-    font: inherit; font-weight: 700; font-size: 1.05rem; text-decoration: none;
+    width: 100%; min-height: 56px; padding: 0 22px;
+    border: 1.5px solid transparent; border-radius: 999px;
+    font: inherit; font-weight: 500; font-size: .88rem;
+    letter-spacing: .18em; text-transform: uppercase; text-decoration: none;
     cursor: pointer; -webkit-tap-highlight-color: transparent;
   }
   .btn:active { transform: scale(.985); }
   .btn[disabled] { opacity: .65; cursor: progress; }
-  .btn-gold  { background: var(--gold); color: var(--ink); }
-  .btn-dark  { background: var(--ink); color: #fff; }
-  .btn-quiet { background: transparent; color: var(--ink); border-color: var(--line); }
+  .btn-brown { background: var(--brown); color: var(--cream); }
+  .btn-dark  { background: var(--espresso); color: var(--cream); }
+  .btn-quiet { background: transparent; color: var(--brown); border-color: var(--brown); }
   .btn-stack { display: grid; gap: 12px; margin-top: 8px; }
   .link {
     display: block; margin: 8px auto 0; min-height: 44px; padding: 10px 6px;
-    background: none; border: 0; font: inherit; font-size: .95rem;
-    color: var(--muted); text-decoration: underline; cursor: pointer;
+    background: none; border: 0; font: inherit; font-size: .92rem;
+    color: var(--muted); text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
   }
 
   /* ---------- Confirmation ---------- */
   .done { text-align: center; }
-  .sun { width: 176px; height: 176px; margin: 0 auto 14px; }
-  .sun svg { width: 100%; height: 100%; display: block; }
-  .rays { transform-origin: 100px 100px; animation: spin 40s linear infinite; }
+  .emblem { width: 168px; height: 168px; margin: 2px auto 6px; }
+  .emblem svg { width: 100%; height: 100%; display: block; }
+  .orbit { transform-origin: 100px 100px; animation: orbit 60s linear infinite; }
   .check-path { stroke-dasharray: 100; stroke-dashoffset: 100; animation: draw .6s .15s ease-out forwards; }
-  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes orbit { to { transform: rotate(360deg); } }
   @keyframes draw { to { stroke-dashoffset: 0; } }
   @media (prefers-reduced-motion: reduce) {
-    .rays { animation: none; }
+    .orbit { animation: none; }
     .check-path { animation: none; stroke-dashoffset: 0; }
   }
 
-  .who { font-size: 1.1rem; margin-bottom: 4px !important; }
-  .collect { color: var(--muted); max-width: 30ch; margin: 0 auto 4px !important; }
-  .ticket {
-    margin: 18px 0 14px;
-    padding: 16px;
-    border: 2px dashed var(--bronze);
-    border-radius: 18px;
-  }
-  .ticket .k { display: block; font-size: .9rem; color: var(--muted); }
-  .ticket .code { display: block; font-size: 2.5rem; line-height: 1.15; font-weight: 800; letter-spacing: .06em; }
+  .script { margin: 0 0 6px !important; font-family: var(--script); font-size: 2.3rem; line-height: 1.1; color: var(--brown); }
+  .who { margin-bottom: 4px !important; }
+  .collect { max-width: 30ch; margin: 0 auto 4px !important; color: var(--muted); }
+  .ticket { margin: 18px 0 14px; padding: 16px; border: 1.5px dashed var(--brown); border-radius: 18px; background: var(--field); }
+  .ticket .k { display: block; font-size: .78rem; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); }
+  .ticket .code { display: block; margin-top: 2px; font-size: 2.4rem; line-height: 1.2; font-weight: 500; letter-spacing: .1em; color: var(--espresso); }
   .live { display: flex; justify-content: center; gap: 10px; font-size: .95rem; color: var(--muted); font-variant-numeric: tabular-nums; }
-  .live .time { color: var(--ink); font-weight: 700; }
+  .live .time { color: var(--espresso); font-weight: 500; }
+
+  /* ---------- Footer bar (echoes the artwork) ---------- */
+  .bar {
+    background: var(--brown); color: var(--cream);
+    padding: 16px 16px calc(16px + env(safe-area-inset-bottom, 0px));
+    text-align: center;
+    font-size: .74rem; letter-spacing: .3em; text-transform: uppercase;
+  }
 </style>
 </head>
 
@@ -204,13 +211,24 @@
   Preview mode: entries are not being saved. Add your Apps Script URL in this file to go live.
 </div>
 
-<main class="page">
-  <header class="masthead">
-    <p class="wordmark">tnd.dxb</p>
+<header class="masthead">
+  <svg class="palm" viewBox="0 0 420 420" aria-hidden="true" focusable="false">
+    <path d="M-10 -7Q35 -6 79 -14Q34 -16 -10 -7ZM-10 -7Q-5 37 10 79Q4 35 -10 -7ZM2 -5Q52 -5 102 -16Q51 -16 2 -5ZM2 -5Q11 46 32 94Q22 43 2 -5ZM14 -3Q68 4 123 -0Q68 -8 14 -3ZM14 -3Q22 47 41 94Q33 44 14 -3ZM25 -1Q88 4 150 -5Q87 -9 25 -1ZM25 -1Q34 54 53 106Q45 51 25 -1ZM37 2Q104 6 170 -5Q103 -9 37 2ZM37 2Q42 62 59 120Q55 60 37 2ZM49 5Q107 5 164 -7Q106 -7 49 5ZM49 5Q50 66 65 126Q64 64 49 5ZM60 8Q120 20 181 20Q121 7 60 8ZM60 8Q66 78 86 146Q81 75 60 8ZM72 11Q139 27 208 27Q141 12 72 11ZM72 11Q73 78 89 142Q87 76 72 11ZM83 15Q145 26 208 23Q146 12 83 15ZM83 15Q88 80 107 143Q102 77 83 15ZM94 19Q162 31 232 28Q163 16 94 19ZM94 19Q96 91 114 160Q112 89 94 19ZM105 23Q171 39 240 41Q173 25 105 23ZM105 23Q102 97 115 171Q118 96 105 23ZM116 28Q185 49 258 55Q188 34 116 28ZM116 28Q114 105 129 181Q131 104 116 28ZM126 33Q193 48 262 49Q195 34 126 33ZM126 33Q120 99 128 164Q135 98 126 33ZM137 38Q209 61 284 68Q212 45 137 38ZM137 38Q136 109 152 179Q152 107 137 38ZM147 43Q215 71 287 84Q220 56 147 43ZM147 43Q140 115 149 186Q156 115 147 43ZM158 49Q223 67 290 70Q225 52 158 49ZM158 49Q150 120 158 191Q166 120 158 49ZM168 54Q232 78 300 86Q236 63 168 54ZM168 54Q158 129 164 204Q174 129 168 54ZM178 61Q243 87 312 98Q247 72 178 61ZM178 61Q174 131 186 200Q190 130 178 61ZM188 67Q255 94 327 105Q260 78 188 67ZM188 67Q178 129 181 192Q191 130 188 67ZM198 74Q258 102 322 116Q262 88 198 74ZM198 74Q193 137 202 200Q207 136 198 74ZM208 81Q258 107 313 123Q262 96 208 81ZM208 81Q201 145 209 210Q215 145 208 81ZM217 88Q266 116 320 132Q271 104 217 88ZM217 88Q207 151 211 215Q221 152 217 88ZM227 95Q275 124 328 142Q280 113 227 95ZM227 95Q215 156 217 217Q229 157 227 95ZM236 103Q289 128 345 141Q293 116 236 103ZM236 103Q227 156 230 209Q239 156 236 103ZM245 111Q293 139 346 156Q298 128 245 111ZM245 111Q233 157 230 205Q243 159 245 111ZM254 119Q293 145 336 161Q297 136 254 119ZM254 119Q245 167 247 215Q256 168 254 119ZM263 128Q301 150 342 163Q305 141 263 128ZM263 128Q255 172 257 217Q265 173 263 128ZM272 137Q308 161 349 176Q313 152 272 137ZM272 137Q259 179 255 223Q268 181 272 137ZM281 146Q315 168 353 182Q319 160 281 146ZM281 146Q271 181 268 216Q279 182 281 146ZM290 155Q323 175 359 187Q326 167 290 155ZM290 155Q277 192 273 231Q286 194 290 155ZM298 165Q325 184 355 197Q328 178 298 165ZM298 165Q290 199 289 233Q297 200 298 165ZM306 175Q328 193 353 205Q331 188 306 175ZM306 175Q299 203 298 231Q305 203 306 175ZM315 185Q334 201 357 211Q337 196 315 185ZM315 185Q308 210 307 236Q314 211 315 185ZM323 196Q341 212 362 223Q344 207 323 196ZM323 196Q316 222 314 248Q321 223 323 196ZM331 207Q347 219 366 228Q349 215 331 207ZM331 207Q324 227 322 248Q329 228 331 207ZM339 218Q353 229 369 238Q355 226 339 218ZM339 218Q330 238 327 259Q335 239 339 218ZM346 229Q360 240 375 248Q362 237 346 229ZM346 229Q342 244 340 260Q345 245 346 229ZM354 240Q365 250 377 257Q367 247 354 240ZM354 240Q348 253 346 267Q351 254 354 240Z" fill="#816447" fill-opacity=".26"/>
+    <path d="M-40 -10Q210 10 360 250" fill="none" stroke="#816447" stroke-opacity=".26" stroke-width="3"/>
+  </svg>
+
+  <div class="masthead-inner">
+    <svg class="logo" viewBox="66 60 2363 953" role="img" aria-label="TND">
+      <path d="M70 64L974 64L1677 1009L1554 1009L860 89L586 89L586 1009L465 1009L465 89L70 89ZM863 344L869 344L877 1009L855 1009ZM1556 64L1661 64L1661 903L1556 774ZM1842 1012L1740 1012 L1738 1010C1732 1006 1732 1000 1736 998L1738 996 L1826 995C1875 995 1917 994 1920 993C1924 993 1934 992 1944 991C1953 990 1962 989 1964 989C1967 988 1974 987 1980 986C1987 985 1997 982 2003 981C2009 979 2018 976 2024 974C2087 957 2162 901 2208 835C2235 796 2266 732 2274 696C2275 693 2276 687 2278 683C2281 672 2290 626 2291 614C2295 583 2296 538 2295 523C2294 517 2294 504 2293 494L2292 476 L2289 462C2287 454 2286 446 2286 445C2286 443 2284 434 2281 424C2279 415 2276 404 2275 400C2273 392 2265 368 2261 357C2259 352 2256 344 2254 340C2205 218 2096 120 1986 98C1981 98 1975 96 1971 95C1964 93 1951 91 1926 88C1917 88 1909 87 1908 86C1906 86 1812 82 1758 81L1724 80 L1721 79C1716 76 1716 71 1721 68L1724 67 L1764 66C1865 64 1976 65 2009 68C2016 69 2026 70 2030 71C2034 71 2042 72 2047 74C2052 75 2061 77 2066 78C2075 79 2087 82 2112 89C2116 90 2121 92 2124 93C2126 94 2133 97 2139 99C2185 116 2232 145 2273 180C2292 196 2297 201 2315 222C2345 257 2378 311 2390 346C2391 348 2393 355 2395 360C2401 374 2409 401 2411 414C2412 418 2413 424 2414 428C2416 433 2418 441 2418 448C2419 454 2421 462 2421 467C2422 472 2424 488 2425 503L2426 530 L2426 553C2425 587 2423 605 2421 618C2420 624 2419 632 2418 637C2417 641 2416 648 2415 651C2414 655 2412 662 2411 667C2411 672 2408 683 2406 691C2403 699 2401 707 2400 709C2398 718 2386 748 2379 761C2357 808 2320 857 2281 893C2230 938 2155 978 2091 994C2085 995 2076 997 2072 999C2067 1000 2060 1001 2056 1002C2053 1003 2044 1004 2037 1005C2012 1009 1986 1011 1954 1012C1949 1012 1899 1012 1842 1012Z" fill="#816447"/>
+    </svg>
+    <p class="tagline">Sunless. Seamless. Tanning.</p>
+    <hr class="rule">
     <h1 id="headline" tabindex="-1">Enter the prize draw</h1>
     <p class="lede" id="lede">Register below for your chance to win. It takes under a minute.</p>
-  </header>
+  </div>
+</header>
 
+<main class="page">
   <noscript>
     <section class="sheet"><h2>JavaScript is off</h2><p>Please turn on JavaScript in your browser to register.</p></section>
   </noscript>
@@ -254,25 +272,26 @@
         </datalist>
       </div>
 
+      <!-- Spam trap: hidden from people. The name is deliberately unlike anything a browser would autofill. -->
       <div class="trap" aria-hidden="true">
-        <label for="website">Leave this field empty</label>
-        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        <label for="hp_check">Leave this field empty</label>
+        <input type="text" id="hp_check" name="hp_check" tabindex="-1" autocomplete="off">
       </div>
 
       <div class="consents">
         <label class="check" for="consent">
           <input type="checkbox" id="consent" name="consent" aria-describedby="err-consent">
-          <span>I agree to tnd.dxb storing my details and contacting me about this prize draw.</span>
+          <span>I agree to TND storing my details and contacting me about this prize draw.</span>
         </label>
         <p class="error" id="err-consent" role="alert"></p>
         <label class="check" for="marketing">
           <input type="checkbox" id="marketing" name="marketing">
-          <span>Send me offers and news from tnd.dxb. <span class="opt">(optional)</span></span>
+          <span>Send me offers and news from TND. <span class="opt">(optional)</span></span>
         </label>
       </div>
 
       <p class="form-error" id="formError" role="alert"></p>
-      <button type="submit" class="btn btn-gold" id="submitBtn">Register</button>
+      <button type="submit" class="btn btn-brown" id="submitBtn">Register</button>
     </form>
   </section>
 
@@ -285,7 +304,7 @@
 
     <div class="btn-stack">
       <a class="btn btn-dark" id="igLink" href="https://www.instagram.com/tnd.dxb/" target="_blank" rel="noopener">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
         Open Instagram
       </a>
       <button type="button" class="btn btn-quiet" id="igDone">I've followed, continue</button>
@@ -295,13 +314,19 @@
 
   <!-- ============ STEP 3: confirmation ============ -->
   <section class="sheet done" id="step-done" aria-label="Registration confirmation" hidden>
-    <div class="sun" aria-hidden="true">
+    <div class="emblem" aria-hidden="true">
       <svg viewBox="0 0 200 200">
-        <g class="rays" id="rays" stroke="#F4B740" stroke-width="7" stroke-linecap="round"></g>
-        <circle cx="100" cy="100" r="60" fill="#F4B740"/>
-        <path class="check-path" d="M72 102 L93 123 L130 78" fill="none" stroke="#3B1D0E" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="100" cy="100" r="88" fill="none" stroke="#C9B49B" stroke-width="1.5"/>
+        <circle cx="100" cy="100" r="74" fill="#EFE3D3"/>
+        <g stroke="#C9B49B" stroke-width="1.5" stroke-linecap="round">
+          <line x1="100" y1="6" x2="100" y2="12"/><line x1="194" y1="100" x2="188" y2="100"/>
+          <line x1="100" y1="194" x2="100" y2="188"/><line x1="6" y1="100" x2="12" y2="100"/>
+        </g>
+        <path class="check-path" d="M70 102 L92 124 L132 78" fill="none" stroke="#816447" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <g class="orbit"><circle cx="100" cy="12" r="5.5" fill="#816447"/></g>
       </svg>
     </div>
+    <p class="script">Good luck!</p>
     <p class="who">Registered as <strong id="doneName"></strong></p>
     <p class="collect">Show this screen to the team to collect your physical entry for the prize draw.</p>
 
@@ -325,6 +350,8 @@
   </section>
 </main>
 
+<footer class="bar">Follow along for updates</footer>
+
 <script>
 (function () {
   'use strict';
@@ -336,7 +363,6 @@
     // Paste the Web App URL from Google Apps Script here (it ends in /exec).
     // While this still says PASTE_..., the page runs in preview mode and saves nothing.
     ENDPOINT: 'https://script.google.com/macros/s/AKfycbyh-hOgenxA9WbHQC-FmhllNQtg5r0nwy2dF40N10vNn_KRhxibY5g5E5yySOUYwtlJZg/exec',
-    INSTAGRAM_HANDLE: '@tnd.dxb',
     INSTAGRAM_URL: 'https://www.instagram.com/tnd.dxb/',
     TIMEZONE: 'Asia/Dubai',
     REQUEST_TIMEOUT_MS: 20000,
@@ -353,10 +379,10 @@
   var clockTimer = null;
 
   var COPY = {
-    details:   { h1: 'Enter the prize draw',      lede: 'Register below for your chance to win. It takes under a minute.' },
-    follow:    { h1: 'Nearly there',              lede: 'One quick step, then you\u2019ll get your entry.' },
-    done:      { h1: 'Registration Completed',    lede: '' },
-    duplicate: { h1: 'Already registered',        lede: '' }
+    details:   { h1: 'Enter the prize draw',   lede: 'Register below for your chance to win. It takes under a minute.' },
+    follow:    { h1: 'Nearly there',           lede: 'One more step, then collect your entry.' },
+    done:      { h1: 'Registration Completed', lede: '' },
+    duplicate: { h1: 'Already registered',     lede: '' }
   };
 
   /* ---------------- Phone number tidy-up ---------------- */
@@ -452,16 +478,6 @@
   function startClock() { stopClock(); tick(); clockTimer = setInterval(tick, 1000); }
   function stopClock() { if (clockTimer) { clearInterval(clockTimer); clockTimer = null; } }
 
-  function buildRays() {
-    var g = $('rays'), n = 24, out = '';
-    for (var i = 0; i < n; i++) {
-      var a = (i / n) * Math.PI * 2, r1 = 72, r2 = (i % 2 === 0) ? 96 : 88;
-      out += '<line x1="' + (100 + Math.cos(a) * r1).toFixed(1) + '" y1="' + (100 + Math.sin(a) * r1).toFixed(1) +
-             '" x2="' + (100 + Math.cos(a) * r2).toFixed(1) + '" y2="' + (100 + Math.sin(a) * r2).toFixed(1) + '"/>';
-    }
-    g.innerHTML = out;
-  }
-
   /* ---------------- Form handling ---------------- */
   var form = $('regForm');
 
@@ -484,7 +500,7 @@
       area: form.elements.area.value.replace(/\s+/g, ' ').trim(),
       marketing: form.elements.marketing.checked,
       consent: form.elements.consent.checked,
-      website: form.elements.website.value
+      website: form.elements.hp_check.value   // spam trap: the backend calls this field "website"
     };
     var errors = [];
     if (data.name.length < 2 || !/\p{L}/u.test(data.name)) errors.push(['name', 'Enter your full name.']);
@@ -540,13 +556,14 @@
   /* ---------------- Instagram step ---------------- */
   $('igLink').href = CONFIG.INSTAGRAM_URL;
 
+  function markReady() { var c = $('igDone'); c.classList.remove('btn-quiet'); c.classList.add('btn-brown'); }
+  function markNotReady() { var c = $('igDone'); c.classList.add('btn-quiet'); c.classList.remove('btn-brown'); }
+
   $('igLink').addEventListener('click', function () {
     state.igOpened = true;
     save('follow');
     sendInstagramStatus('opened');
-    var cont = $('igDone');
-    cont.classList.remove('btn-quiet');
-    cont.classList.add('btn-gold');
+    markReady();
   });
 
   $('igDone').addEventListener('click', function () {
@@ -569,14 +586,11 @@
     state = { name: '', code: '', igOpened: false };
     form.reset();
     clearErrors();
-    var cont = $('igDone');
-    cont.classList.add('btn-quiet');
-    cont.classList.remove('btn-gold');
+    markNotReady();
     showStep('details');
   });
 
   /* ---------------- Start ---------------- */
-  buildRays();
   if (DEMO) $('demoBanner').hidden = false;
 
   var saved = load();
@@ -587,7 +601,7 @@
     if (saved.stage === 'done') {
       showDone();
     } else {
-      if (state.igOpened) { $('igDone').classList.remove('btn-quiet'); $('igDone').classList.add('btn-gold'); }
+      if (state.igOpened) markReady();
       showStep('follow');
     }
   } else {
