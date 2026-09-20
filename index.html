@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#8F3F14">
+<title>Prize draw registration | tnd.dxb</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bronze: #8F3F14;
+    --gold: #F4B740;
+    --ink: #3B1D0E;
+    --muted: #7A5A47;
+    --line: #E6D3C2;
+    --sheet: #FFFBF5;
+    --error: #B3261E;
+    --radius: 14px;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bronze);
+    color: var(--ink);
+    font-family: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-optical-sizing: auto;
+    font-size: 17px;
+    line-height: 1.45;
+  }
+  [hidden] { display: none !important; }
+
+  .demo-banner {
+    background: var(--gold);
+    color: var(--ink);
+    padding: 10px 16px;
+    font-size: .88rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .page {
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ---------- Masthead (on the bronze ground) ---------- */
+  .masthead {
+    padding: calc(28px + env(safe-area-inset-top, 0px)) 22px 26px;
+    color: #fff;
+  }
+  .wordmark {
+    margin: 0 0 22px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--gold);
+  }
+  .masthead h1 {
+    margin: 0;
+    font-size: clamp(2rem, 9.5vw, 2.7rem);
+    line-height: 1.02;
+    font-weight: 800;
+    letter-spacing: -.02em;
+    outline: none;
+  }
+  .lede {
+    margin: 12px 0 0;
+    max-width: 32ch;
+    color: #FBE3CF;
+  }
+
+  /* ---------- White sheet ---------- */
+  .sheet {
+    flex: 1;
+    background: var(--sheet);
+    border-radius: 28px 28px 0 0;
+    padding: 26px 22px calc(34px + env(safe-area-inset-bottom, 0px));
+  }
+  .sheet h2 {
+    margin: 0 0 6px;
+    font-size: 1.35rem;
+    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: -.01em;
+  }
+  .sheet p { margin: 0 0 16px; }
+  .sheet :focus-visible { outline: 3px solid var(--bronze); outline-offset: 3px; }
+
+  @media (min-width: 600px) {
+    .page { padding-top: 24px; }
+    .sheet { flex: 0 1 auto; border-radius: 28px; margin-bottom: 32px; }
+  }
+
+  /* ---------- Progress ---------- */
+  .progress { display: flex; gap: 6px; margin: 0 0 8px; }
+  .progress span { flex: 1; height: 5px; border-radius: 3px; background: var(--line); }
+  .progress span.on { background: var(--bronze); }
+  .step-label { margin: 0 0 20px !important; font-size: .88rem; color: var(--muted); }
+
+  /* ---------- Form ---------- */
+  .field { margin-bottom: 18px; }
+  label, .label { display: block; margin-bottom: 6px; font-weight: 700; font-size: .95rem; }
+  .opt { font-weight: 400; color: var(--muted); }
+
+  input[type="text"], input[type="email"], input[type="tel"] {
+    width: 100%;
+    height: 54px;
+    padding: 0 16px;
+    font: inherit;
+    font-size: 16px; /* 16px stops iOS zooming in on focus */
+    color: var(--ink);
+    background: #fff;
+    border: 1.5px solid var(--line);
+    border-radius: var(--radius);
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  input::placeholder { color: #A58F80; }
+  input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus {
+    outline: none;
+    border-color: var(--bronze);
+    box-shadow: 0 0 0 3px rgba(143, 63, 20, .22);
+  }
+  input[aria-invalid="true"] { border-color: var(--error); }
+
+  .error { margin: 6px 0 0; font-size: .9rem; color: var(--error); }
+  .error:empty { display: none; }
+  .form-error {
+    margin: 0 0 16px;
+    padding: 12px 14px;
+    border: 1.5px solid var(--error);
+    border-radius: var(--radius);
+    color: var(--error);
+    font-size: .95rem;
+  }
+  .form-error:empty { display: none; }
+
+  .check { display: flex; gap: 12px; align-items: flex-start; margin: 0 0 14px; font-size: .92rem; line-height: 1.4; font-weight: 400; }
+  .check input { flex: none; width: 24px; height: 24px; margin: 0; accent-color: var(--bronze); }
+  .consents { margin-top: 6px; }
+
+  .trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; min-height: 56px; padding: 0 20px;
+    border: 2px solid transparent; border-radius: 16px;
+    font: inherit; font-weight: 700; font-size: 1.05rem; text-decoration: none;
+    cursor: pointer; -webkit-tap-highlight-color: transparent;
+  }
+  .btn:active { transform: scale(.985); }
+  .btn[disabled] { opacity: .65; cursor: progress; }
+  .btn-gold  { background: var(--gold); color: var(--ink); }
+  .btn-dark  { background: var(--ink); color: #fff; }
+  .btn-quiet { background: transparent; color: var(--ink); border-color: var(--line); }
+  .btn-stack { display: grid; gap: 12px; margin-top: 8px; }
+  .link {
+    display: block; margin: 8px auto 0; min-height: 44px; padding: 10px 6px;
+    background: none; border: 0; font: inherit; font-size: .95rem;
+    color: var(--muted); text-decoration: underline; cursor: pointer;
+  }
+
+  /* ---------- Confirmation ---------- */
+  .done { text-align: center; }
+  .sun { width: 176px; height: 176px; margin: 0 auto 14px; }
+  .sun svg { width: 100%; height: 100%; display: block; }
+  .rays { transform-origin: 100px 100px; animation: spin 40s linear infinite; }
+  .check-path { stroke-dasharray: 100; stroke-dashoffset: 100; animation: draw .6s .15s ease-out forwards; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .rays { animation: none; }
+    .check-path { animation: none; stroke-dashoffset: 0; }
+  }
+
+  .who { font-size: 1.1rem; margin-bottom: 4px !important; }
+  .collect { color: var(--muted); max-width: 30ch; margin: 0 auto 4px !important; }
+  .ticket {
+    margin: 18px 0 14px;
+    padding: 16px;
+    border: 2px dashed var(--bronze);
+    border-radius: 18px;
+  }
+  .ticket .k { display: block; font-size: .9rem; color: var(--muted); }
+  .ticket .code { display: block; font-size: 2.5rem; line-height: 1.15; font-weight: 800; letter-spacing: .06em; }
+  .live { display: flex; justify-content: center; gap: 10px; font-size: .95rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .live .time { color: var(--ink); font-weight: 700; }
+</style>
+</head>
+
+<body>
+<div class="demo-banner" id="demoBanner" hidden>
+  Preview mode: entries are not being saved. Add your Apps Script URL in this file to go live.
+</div>
+
+<main class="page">
+  <header class="masthead">
+    <p class="wordmark">tnd.dxb</p>
+    <h1 id="headline" tabindex="-1">Enter the prize draw</h1>
+    <p class="lede" id="lede">Register below for your chance to win. It takes under a minute.</p>
+  </header>
+
+  <noscript>
+    <section class="sheet"><h2>JavaScript is off</h2><p>Please turn on JavaScript in your browser to register.</p></section>
+  </noscript>
+
+  <!-- ============ STEP 1: details ============ -->
+  <section class="sheet" id="step-details" aria-label="Your details">
+    <div class="progress" aria-hidden="true"><span class="on"></span><span></span></div>
+    <p class="step-label">Step 1 of 2</p>
+
+    <form id="regForm" novalidate>
+      <div class="field">
+        <label for="name">Full name</label>
+        <input type="text" id="name" name="name" autocomplete="name" autocapitalize="words" enterkeyhint="next" aria-describedby="err-name" required>
+        <p class="error" id="err-name" role="alert"></p>
+      </div>
+
+      <div class="field">
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" autocomplete="email" inputmode="email" autocapitalize="none" spellcheck="false" enterkeyhint="next" aria-describedby="err-email" required>
+        <p class="error" id="err-email" role="alert"></p>
+      </div>
+
+      <div class="field">
+        <label for="phone">Mobile number</label>
+        <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="050 123 4567" enterkeyhint="next" aria-describedby="err-phone" required>
+        <p class="error" id="err-phone" role="alert"></p>
+      </div>
+
+      <div class="field">
+        <label for="area">Where do you live in Dubai? <span class="opt">(optional)</span></label>
+        <input type="text" id="area" name="area" list="areas" autocomplete="off" placeholder="Start typing, e.g. Dubai Marina" enterkeyhint="done" maxlength="60">
+        <datalist id="areas">
+          <option value="Al Barsha"><option value="Al Furjan"><option value="Al Quoz"><option value="Al Safa"><option value="Al Satwa">
+          <option value="Al Wasl"><option value="Arabian Ranches"><option value="Arjan"><option value="Bur Dubai"><option value="Business Bay">
+          <option value="City Walk"><option value="Damac Hills"><option value="Deira"><option value="DIFC"><option value="Downtown Dubai">
+          <option value="Dubai Creek Harbour"><option value="Dubai Hills Estate"><option value="Dubai Marina"><option value="Dubai Silicon Oasis"><option value="Dubai South">
+          <option value="Dubai Sports City"><option value="Emirates Hills"><option value="JBR"><option value="Jumeirah"><option value="Jumeirah Golf Estates">
+          <option value="Jumeirah Lakes Towers (JLT)"><option value="Jumeirah Village Circle (JVC)"><option value="Meydan"><option value="Mirdif"><option value="Motor City">
+          <option value="Nad Al Sheba"><option value="Palm Jumeirah"><option value="Sobha Hartland"><option value="The Springs, Meadows and Lakes"><option value="Tilal Al Ghaf">
+          <option value="Town Square"><option value="Umm Suqeim">
+        </datalist>
+      </div>
+
+      <div class="trap" aria-hidden="true">
+        <label for="website">Leave this field empty</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="consents">
+        <label class="check" for="consent">
+          <input type="checkbox" id="consent" name="consent" aria-describedby="err-consent">
+          <span>I agree to tnd.dxb storing my details and contacting me about this prize draw.</span>
+        </label>
+        <p class="error" id="err-consent" role="alert"></p>
+        <label class="check" for="marketing">
+          <input type="checkbox" id="marketing" name="marketing">
+          <span>Send me offers and news from tnd.dxb. <span class="opt">(optional)</span></span>
+        </label>
+      </div>
+
+      <p class="form-error" id="formError" role="alert"></p>
+      <button type="submit" class="btn btn-gold" id="submitBtn">Register</button>
+    </form>
+  </section>
+
+  <!-- ============ STEP 2: Instagram ============ -->
+  <section class="sheet" id="step-follow" aria-labelledby="h-follow" hidden>
+    <div class="progress" aria-hidden="true"><span class="on"></span><span class="on"></span></div>
+    <p class="step-label">Step 2 of 2</p>
+    <h2 id="h-follow">Follow @tnd.dxb on Instagram</h2>
+    <p>Tap the button, press <strong>Follow</strong> in Instagram, then come back to this page to finish.</p>
+
+    <div class="btn-stack">
+      <a class="btn btn-dark" id="igLink" href="https://www.instagram.com/tnd.dxb/" target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        Open Instagram
+      </a>
+      <button type="button" class="btn btn-quiet" id="igDone">I've followed, continue</button>
+    </div>
+    <button type="button" class="link" id="igSkip">I don't use Instagram</button>
+  </section>
+
+  <!-- ============ STEP 3: confirmation ============ -->
+  <section class="sheet done" id="step-done" aria-label="Registration confirmation" hidden>
+    <div class="sun" aria-hidden="true">
+      <svg viewBox="0 0 200 200">
+        <g class="rays" id="rays" stroke="#F4B740" stroke-width="7" stroke-linecap="round"></g>
+        <circle cx="100" cy="100" r="60" fill="#F4B740"/>
+        <path class="check-path" d="M72 102 L93 123 L130 78" fill="none" stroke="#3B1D0E" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <p class="who">Registered as <strong id="doneName"></strong></p>
+    <p class="collect">Show this screen to the team to collect your physical entry for the prize draw.</p>
+
+    <div class="ticket">
+      <span class="k">Your entry code</span>
+      <span class="code" id="doneCode"></span>
+    </div>
+    <div class="live" aria-hidden="true">
+      <span class="time" id="liveTime"></span>
+      <span id="liveDate"></span>
+    </div>
+    <button type="button" class="link" id="startOver">Registering someone else?</button>
+  </section>
+
+  <!-- ============ Already registered ============ -->
+  <section class="sheet" id="step-duplicate" aria-labelledby="h-dup" hidden>
+    <h2 id="h-dup">We already have an entry for you</h2>
+    <p>That email address or mobile number has already been registered, so we can't add a second entry.</p>
+    <p>If you think this is a mistake, please speak to a member of the team.</p>
+    <button type="button" class="btn btn-quiet" id="dupBack">Go back and check my details</button>
+  </section>
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  /* =====================================================================
+     SETTINGS: the only part of this file you normally need to edit
+     ===================================================================== */
+  var CONFIG = {
+    // Paste the Web App URL from Google Apps Script here (it ends in /exec).
+    // While this still says PASTE_..., the page runs in preview mode and saves nothing.
+    ENDPOINT: 'https://script.google.com/macros/s/AKfycbyh-hOgenxA9WbHQC-FmhllNQtg5r0nwy2dF40N10vNn_KRhxibY5g5E5yySOUYwtlJZg/exec',
+    INSTAGRAM_HANDLE: '@tnd.dxb',
+    INSTAGRAM_URL: 'https://www.instagram.com/tnd.dxb/',
+    TIMEZONE: 'Asia/Dubai',
+    REQUEST_TIMEOUT_MS: 20000,
+    SESSION_HOURS: 16   // how long this phone remembers a completed registration
+  };
+
+  var DEMO = !/^https:\/\/script\.google\.com\//.test(CONFIG.ENDPOINT);
+  var STORE_KEY = 'tnd_draw_v1';
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var state = { name: '', code: '', igOpened: false };
+  var submitting = false;
+  var clockTimer = null;
+
+  var COPY = {
+    details:   { h1: 'Enter the prize draw',      lede: 'Register below for your chance to win. It takes under a minute.' },
+    follow:    { h1: 'Nearly there',              lede: 'One quick step, then you\u2019ll get your entry.' },
+    done:      { h1: 'Registration Completed',    lede: '' },
+    duplicate: { h1: 'Already registered',        lede: '' }
+  };
+
+  /* ---------------- Phone number tidy-up ---------------- */
+  // Turns 050 123 4567, 50 123 4567, 971501234567, 00971..., +971 50..., +44 7700 900123 into +E.164.
+  function normalisePhone(raw) {
+    var s = String(raw || '').trim().replace(/[\s\-().]/g, '');
+    if (s.indexOf('00') === 0) s = '+' + s.slice(2);
+    if (s.indexOf('+') !== 0) {
+      if (/^0[0-9]{9}$/.test(s)) s = '+971' + s.slice(1);          // 05x xxx xxxx
+      else if (/^5[0-9]{8}$/.test(s)) s = '+971' + s;              // 5x xxx xxxx
+      else if (/^971[0-9]{9}$/.test(s)) s = '+' + s;               // 971 5x xxx xxxx
+    }
+    if (s.indexOf('+9710') === 0) s = '+971' + s.slice(5);         // +971 (0) 50...
+    return /^\+[1-9][0-9]{7,14}$/.test(s) ? s : null;
+  }
+
+  /* ---------------- Networking ---------------- */
+  function post(payload, opts) {
+    opts = opts || {};
+    var ctrl = ('AbortController' in window) ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, CONFIG.REQUEST_TIMEOUT_MS) : null;
+    // text/plain avoids a CORS preflight, which Google Apps Script cannot answer.
+    return fetch(CONFIG.ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload),
+      redirect: 'follow',
+      keepalive: !!opts.keepalive,
+      signal: ctrl ? ctrl.signal : undefined
+    }).then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    }).finally(function () { if (timer) clearTimeout(timer); });
+  }
+
+  function sendRegistration(data) {
+    if (DEMO) {
+      return new Promise(function (resolve) {
+        setTimeout(function () {
+          var chars = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789', c = '';
+          for (var i = 0; i < 4; i++) c += chars.charAt(Math.floor(Math.random() * chars.length));
+          resolve({ ok: true, duplicate: false, code: 'TND-' + c });
+        }, 700);
+      });
+    }
+    data.action = 'register';
+    return post(data);
+  }
+
+  function sendInstagramStatus(status) {
+    if (DEMO || !state.code) return;
+    post({ action: 'instagram', code: state.code, status: status }, { keepalive: true }).catch(function () {});
+  }
+
+  /* ---------------- Remember progress on this phone ---------------- */
+  function save(stage) {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify({ stage: stage, name: state.name, code: state.code, ig: state.igOpened, ts: Date.now() })); } catch (e) {}
+  }
+  function load() {
+    try {
+      var o = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
+      if (o && o.code && (Date.now() - o.ts) < CONFIG.SESSION_HOURS * 3600 * 1000) return o;
+    } catch (e) {}
+    return null;
+  }
+  function clearSaved() { try { localStorage.removeItem(STORE_KEY); } catch (e) {} }
+
+  /* ---------------- Screens ---------------- */
+  var STEPS = ['details', 'follow', 'done', 'duplicate'];
+
+  function showStep(name, quiet) {
+    STEPS.forEach(function (s) { $('step-' + s).hidden = (s !== name); });
+    $('headline').textContent = COPY[name].h1;
+    $('lede').textContent = COPY[name].lede;
+    $('lede').hidden = !COPY[name].lede;
+    if (name === 'done') startClock(); else stopClock();
+    window.scrollTo(0, 0);
+    if (!quiet) $('headline').focus({ preventScroll: true });
+  }
+
+  function showDone() {
+    $('doneName').textContent = state.name;
+    $('doneCode').textContent = state.code;
+    showStep('done');
+  }
+
+  /* ---------------- Live clock (shows the screen is live, not a screenshot) ---------------- */
+  function tick() {
+    var now = new Date();
+    $('liveTime').textContent = new Intl.DateTimeFormat('en-GB', { timeZone: CONFIG.TIMEZONE, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).format(now);
+    $('liveDate').textContent = new Intl.DateTimeFormat('en-GB', { timeZone: CONFIG.TIMEZONE, weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }).format(now);
+  }
+  function startClock() { stopClock(); tick(); clockTimer = setInterval(tick, 1000); }
+  function stopClock() { if (clockTimer) { clearInterval(clockTimer); clockTimer = null; } }
+
+  function buildRays() {
+    var g = $('rays'), n = 24, out = '';
+    for (var i = 0; i < n; i++) {
+      var a = (i / n) * Math.PI * 2, r1 = 72, r2 = (i % 2 === 0) ? 96 : 88;
+      out += '<line x1="' + (100 + Math.cos(a) * r1).toFixed(1) + '" y1="' + (100 + Math.sin(a) * r1).toFixed(1) +
+             '" x2="' + (100 + Math.cos(a) * r2).toFixed(1) + '" y2="' + (100 + Math.sin(a) * r2).toFixed(1) + '"/>';
+    }
+    g.innerHTML = out;
+  }
+
+  /* ---------------- Form handling ---------------- */
+  var form = $('regForm');
+
+  function setError(field, msg) {
+    var box = $('err-' + field);
+    if (box) box.textContent = msg || '';
+    var input = form.elements[field];
+    if (input && input.type !== 'checkbox') input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+  }
+  function clearErrors() {
+    ['name', 'email', 'phone', 'consent'].forEach(function (f) { setError(f, ''); });
+    $('formError').textContent = '';
+  }
+
+  function validate() {
+    var data = {
+      name: form.elements.name.value.replace(/\s+/g, ' ').trim(),
+      email: form.elements.email.value.trim().toLowerCase(),
+      phone: normalisePhone(form.elements.phone.value),
+      area: form.elements.area.value.replace(/\s+/g, ' ').trim(),
+      marketing: form.elements.marketing.checked,
+      consent: form.elements.consent.checked,
+      website: form.elements.website.value
+    };
+    var errors = [];
+    if (data.name.length < 2 || !/\p{L}/u.test(data.name)) errors.push(['name', 'Enter your full name.']);
+    if (!EMAIL_RE.test(data.email)) errors.push(['email', 'Enter a valid email address, like name@example.com.']);
+    if (!data.phone) errors.push(['phone', 'Enter a mobile number, like 050 123 4567 or +44 7700 900123.']);
+    if (!data.consent) errors.push(['consent', 'Tick this box to enter the draw.']);
+    return { data: data, errors: errors };
+  }
+
+  function setBusy(busy) {
+    var b = $('submitBtn');
+    b.disabled = busy;
+    b.textContent = busy ? 'Registering\u2026' : 'Register';
+  }
+
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    if (submitting) return;
+    clearErrors();
+
+    var v = validate();
+    if (v.errors.length) {
+      v.errors.forEach(function (e) { setError(e[0], e[1]); });
+      var first = form.elements[v.errors[0][0]];
+      if (first) first.focus();
+      return;
+    }
+
+    submitting = true;
+    setBusy(true);
+    sendRegistration(v.data).then(function (result) {
+      if (!result || !result.ok) throw new Error((result && result.error) || 'Save failed');
+      if (result.duplicate) { showStep('duplicate'); return; }
+      state.name = v.data.name;
+      state.code = result.code;
+      state.igOpened = false;
+      save('follow');
+      showStep('follow');
+    }).catch(function () {
+      $('formError').textContent = 'We couldn\u2019t save your registration. Check your signal and try again.';
+    }).finally(function () {
+      submitting = false;
+      setBusy(false);
+    });
+  });
+
+  // Clear a field's error as soon as the person starts fixing it.
+  ['name', 'email', 'phone'].forEach(function (f) {
+    form.elements[f].addEventListener('input', function () { setError(f, ''); });
+  });
+  form.elements.consent.addEventListener('change', function () { setError('consent', ''); });
+
+  /* ---------------- Instagram step ---------------- */
+  $('igLink').href = CONFIG.INSTAGRAM_URL;
+
+  $('igLink').addEventListener('click', function () {
+    state.igOpened = true;
+    save('follow');
+    sendInstagramStatus('opened');
+    var cont = $('igDone');
+    cont.classList.remove('btn-quiet');
+    cont.classList.add('btn-gold');
+  });
+
+  $('igDone').addEventListener('click', function () {
+    sendInstagramStatus(state.igOpened ? 'followed' : 'skipped');
+    save('done');
+    showDone();
+  });
+
+  $('igSkip').addEventListener('click', function () {
+    sendInstagramStatus('skipped');
+    save('done');
+    showDone();
+  });
+
+  /* ---------------- Other buttons ---------------- */
+  $('dupBack').addEventListener('click', function () { showStep('details'); });
+
+  $('startOver').addEventListener('click', function () {
+    clearSaved();
+    state = { name: '', code: '', igOpened: false };
+    form.reset();
+    clearErrors();
+    var cont = $('igDone');
+    cont.classList.add('btn-quiet');
+    cont.classList.remove('btn-gold');
+    showStep('details');
+  });
+
+  /* ---------------- Start ---------------- */
+  buildRays();
+  if (DEMO) $('demoBanner').hidden = false;
+
+  var saved = load();
+  if (saved) {
+    state.name = saved.name || '';
+    state.code = saved.code;
+    state.igOpened = !!saved.ig;
+    if (saved.stage === 'done') {
+      showDone();
+    } else {
+      if (state.igOpened) { $('igDone').classList.remove('btn-quiet'); $('igDone').classList.add('btn-gold'); }
+      showStep('follow');
+    }
+  } else {
+    showStep('details', true);
+  }
+})();
+</script>
+</body>
+</html>
